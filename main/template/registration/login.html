@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+	.container.my-4 {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+</style>
+<main class="container my-4">
+	<!-- Featured Products -->
+	<h3 class="my-4 border-bottom pb-1">Login</h3>
+	<table class="table table-bordered">
+		<form method="post">
+			{% csrf_token %}
+			{{form.as_table}}
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="Login" class="btn btn-primary" />
+				</td>
+			</tr>
+		</form>
+	</table>
+	<p><a href="{% url 'password_reset' %}" class="text-danger">Reset Password?</a></p>
+	<p>If you are not registred, Please <a href="{% url 'signup' %}">Signup here</a>.</p>
+</main>
+{% endblock %}
