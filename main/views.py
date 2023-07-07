@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
 
 
-def home(request):
+def index(request):
 	banners=Banner.objects.all().order_by('-id')
 	data=Product.objects.filter(is_featured=True).order_by('-id')
 	return render(request,'index.html',{'data':data,'banners':banners})
