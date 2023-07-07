@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yq*st#cj$))3hf7u*(ai89hq1q02c-ls$!a=&roml#avl!%fid
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['e-com.azurewebsites.net']
 
 
 # Application definition
@@ -137,3 +137,4 @@ LOGOUT_REDIRECT_URL='login'
 
 PAYPAL_RECEIVER_EMAIL = 'sb-c5xgx6555500@business.example.com'
 PAYPAL_TEST = True
+
