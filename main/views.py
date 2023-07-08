@@ -11,7 +11,7 @@ from django.db.models.functions import ExtractMonth
 from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from paypal.standard.forms import PayPalPaymentsForm
+# from paypal.standard.forms import PayPalPaymentsForm
 
 
 def index(request):
@@ -211,17 +211,17 @@ def checkout(request):
 				total=float(item['qty'])*float(item['price'])
 				)
 		host = request.get_host()
-		paypal_dict = {
-		    'business': settings.PAYPAL_RECEIVER_EMAIL,
-		    'amount': total_amt,
-		    'item_name': 'OrderNo-'+str(order.id), # type: ignore
-		    'invoice': 'INV-'+str(order.id), # type: ignore
-		    'currency_code': 'USD',
-		    'notify_url': 'http://{}{}'.format(host,reverse('paypal-ipn')),
-		    'return_url': 'http://{}{}'.format(host,reverse('payment_done')),
-		    'cancel_return': 'http://{}{}'.format(host,reverse('payment_cancelled')),
-		}
-		form = PayPalPaymentsForm(initial=paypal_dict)
+		# paypal_dict = {
+		#     'business': settings.PAYPAL_RECEIVER_EMAIL,
+		#     'amount': total_amt,
+		#     'item_name': 'OrderNo-'+str(order.id), # type: ignore
+		#     'invoice': 'INV-'+str(order.id), # type: ignore
+		#     'currency_code': 'USD',
+		#     'notify_url': 'http://{}{}'.format(host,reverse('paypal-ipn')),
+		#     'return_url': 'http://{}{}'.format(host,reverse('payment_done')),
+		#     'cancel_return': 'http://{}{}'.format(host,reverse('payment_cancelled')),
+		# }
+		# form = PayPalPaymentsForm(initial=paypal_dict)
 		address=UserAddressBook.objects.filter(user=request.user,status=True).first()
 		return render(request, 'checkout.html',{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt,'form':form,'address':address})
 	
